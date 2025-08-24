@@ -1,14 +1,14 @@
-"use client";
+'use client'
 
-import React from "react";
+import React from 'react'
 
 export function TestHydrated() {
   const hydrated = React.useSyncExternalStore(
     React.useCallback(() => () => {}, []),
     () => true,
     () => false,
-  );
-  return <span data-testid="hydrated">[hydrated: {hydrated ? 1 : 0}]</span>;
+  )
+  return <span data-testid="hydrated">[hydrated: {hydrated ? 1 : 0}]</span>
 }
 
 export function TestClientState() {
@@ -18,5 +18,5 @@ export function TestClientState() {
       data-testid="client-state"
       placeholder="client-state"
     />
-  );
+  )
 }
