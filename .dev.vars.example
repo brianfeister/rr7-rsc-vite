@@ -1,0 +1,7 @@
+# OAuth constants - Copy this file to .dev.vars and fill in your actual values
+# This file can be committed to git as it contains no sensitive data
+VITE_SHORT_CODE=your_short_code_here
+VITE_CLIENT_ID=your_client_id_here
+VITE_CLIENT_SECRET=your_client_secret_here
+VITE_ORG_ID=your_org_id_here
+VITE_SITE_ID=your_site_id_here

@@ -1,34 +1,63 @@
-# rsc react-router
+# React Router RSC Cloudflare
 
-https://vite-rsc-react-router.hiro18181.workers.dev
+This is a React Router application with React Server Components running on Cloudflare Workers.
 
-> [!NOTE]
-> React Router now provides [official RSC support](https://reactrouter.com/how-to/react-server-components) for Vite. The example might not be kept up to date with the latest version. Please refer to React Router's official documentation for the latest integrations.
+## Environment Variables Setup
 
-Vite RSC example based on demo made by React router team with Parcel:
+### Local Development
 
-- https://github.com/jacob-ebey/parcel-plugin-react-router/
-- https://github.com/jacob-ebey/experimental-parcel-react-router-starter
-- https://github.com/remix-run/react-router/tree/rsc/playground/rsc-vite
+1. Copy `.dev.vars.example` to `.dev.vars` and fill in your actual values:
 
-See also [`rsc-movies`](https://github.com/hi-ogawa/rsc-movies/).
+    ```bash
+    cp .dev.vars.example .dev.vars
+    ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vitejs/vite-plugin-react/tree/main/packages/plugin-rsc/examples/react-router?file=src%2Froutes%2Froot.tsx)
+2. Edit `.dev.vars` with your actual OAuth credentials:
 
-Or try it locally by:
+    ```
+    VITE_SHORT_CODE=your_actual_short_code
+    VITE_CLIENT_ID=your_actual_client_id
+    VITE_CLIENT_SECRET=your_actual_client_secret
+    VITE_ORG_ID=your_actual_org_id
+    VITE_SITE_ID=your_actual_site_id
+    ```
 
-```sh
-npx giget gh:vitejs/vite-plugin-react/packages/plugin-rsc/examples/react-router my-app
-cd my-app
-npm i
-npm run dev
-npm run build
-npm run preview
+3. For local Wrangler development, use the local config files:
 
-# run on @cloudflare/vite-plugin and deploy.
-# a separate configuration is found in ./cf/vite.config.ts
-npm run cf-dev
-npm run cf-build
-npm run cf-preview
-npm run cf-release
+    ```bash
+    # Start SSR worker with local config
+    pnpm cf-dev-local
+
+    # Start RSC worker with local config
+    pnpm cf-dev-local-rsc
+    ```
+
+### Production Deployment
+
+Set the same environment variables in your Cloudflare dashboard:
+
+- Go to Workers & Pages → Your Worker
+- Settings → Variables
+- Add each `VITE_*` variable with your production values
+
+### Security Notes
+
+- `.dev.vars` and `cf/wrangler.*.local.jsonc` are gitignored and contain secrets
+- The main Wrangler configs (`wrangler.rsc.jsonc`, `wrangler.ssr.jsonc`) are committed but contain no secrets
+- Always use environment variables for sensitive data, never hardcode in source
+
+## Development
+
+```bash
+# Install dependencies
+pnpm install
+
+# Start local development
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Preview production build
+pnpm preview
 ```
