@@ -1,3 +1,14 @@
+https://vite-rsc-demo-commerce.hiro18181.workers.dev/
+
+```sh
+pnpm dev
+pnpm simple-cf-build
+pnpm simple-cf-preview
+pnpm simple-cf-release
+```
+
+---
+
 # React Router RSC Cloudflare
 
 This is a React Router application with React Server Components running on Cloudflare Workers.
